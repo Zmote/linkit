@@ -8,6 +8,8 @@ certain group of people. Via the Portal, all
 commonly used links can be gathered and accessed at
 a central place.
 
+This project is a continuation of another one I did in 2019, [Technik Portal](https://github.com/Zmote/TechnikPortal)
+
 # Dev
 For local development, you can use following ENV properties to start:
 ```
