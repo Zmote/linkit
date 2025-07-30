@@ -1,0 +1,6 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     th:unless="${system.getCopyright().isEmpty()}"
+     th:fragment="footer"
+     class="fixed-bottom bg-light text-dark d-flex justify-content-center w-100 shadow border-top">
+    <span class="my-1" th:text="${system.copyright}"></span>
+</div>

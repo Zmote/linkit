@@ -1,0 +1,96 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main_layout}">
+<body>
+<div layout:fragment="content" th:fragment="body" class="w-100" sec:authorize="hasRole('ROLE_ADMIN')">
+    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="globallinks-tab" data-toggle="tab" href="#globallinks" role="tab"
+               aria-controls="globallinks"
+               aria-selected="true">
+                <i class="fa fa-home"></i>
+                Öffentliche Links
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="personallinks-tab" data-toggle="tab" href="#personallinks" role="tab"
+               aria-controls="personallinks"
+               aria-selected="false">
+                <i class="fas fa-bookmark"></i>
+                Meine Links
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab"
+               aria-controls="users"
+               aria-selected="false">
+                <i class="fas fa-users-cog"></i>
+                Benutzer
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="portal-tab" data-toggle="tab" href="#portal" role="tab"
+               aria-controls="portal"
+               aria-selected="false">
+                <i class="fas fa-cogs"></i>
+                System
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="bugreport-tab" data-toggle="tab" href="#bugreport" role="tab"
+               aria-controls="bugreport"
+               aria-selected="false">
+                <i class="fas fa-bug"></i>
+                Bug Report
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="featurerequest-tab" data-toggle="tab" href="#featurerequest" role="tab"
+               aria-controls="featurerequest"
+               aria-selected="false">
+                <i class="fas fa-flask"></i>
+                Feature Request
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" id="mainContent">
+        <script src="/js/controller/configurations/crudController.js"></script>
+        <div class="tab-pane fade show active" id="globallinks" role="tabpanel" aria-labelledby="globallinks-tab">
+            <div th:replace="configurations/portal-links/global-links/list"></div>
+        </div>
+        <div class="tab-pane fade" id="personallinks" role="tabpanel" aria-labelledby="personallinks-tab">
+            <div th:replace="configurations/portal-links/personal-links/list"></div>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="tab-pane fade" id="users" role="tabpanel"
+             aria-labelledby="users-tab">
+            <div th:replace="configurations/users/userlist"></div>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="tab-pane fade" id="portal" role="tabpanel"
+             aria-labelledby="portal-tab">
+            <div th:replace="configurations/portal/index :: body"></div>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="tab-pane fade" id="bugreport"
+             role="tabpanel">
+            <div class="d-flex justify-content-center mt-2">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd8Wwu8p5Rscw3Eq6EmNYhXlD3wC77ykPtFnSvLxnrVX5i06A/viewform?embedded=true"
+                        width="640" height="942"
+                        frameborder="0"
+                        marginheight="0" marginwidth="0">Ladet…
+                </iframe>
+            </div>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="tab-pane fade"
+             id="featurerequest" role="tabpanel">
+            <div class=" d-flex justify-content-center mt-2">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe2T3poIIjqxZXxN5pj1YoKxeS-cSTMzD8hk5k6GsC2FeE1fQ/viewform?embedded=true"
+                        width="640" height="728"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0">Ladet…
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

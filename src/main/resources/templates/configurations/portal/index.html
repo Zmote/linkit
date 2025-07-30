@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>System</title>
+</head>
+<body th:fragment="body">
+<form method="post" action="/portal" class="mt-2" th:object="${system}">
+    <div class="form-group row">
+        <label class="col-4 col-form-label" for="portalName">Portalname</label>
+        <div class="col-8">
+            <input id="portalName" th:field="*{name}" placeholder="Portalname" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="copyright" class="col-4 col-form-label">Copyright</label>
+        <div class="col-8">
+            <input id="copyright" th:field="*{copyright}" placeholder="Copyright" type="text" class="form-control"
+                   aria-describedby="copyrightHelpBlock">
+            <span id="copyrightHelpBlock" class="form-text text-muted">Text für die Copyright Anzeige im Footer des Portals</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="maxLoginAttempts" class="col-4 col-form-label">Max. Anzahl Loginversüche</label>
+        <div class="col-8">
+            <input id="maxLoginAttempts" th:field="*{maxLoginAttempts}" placeholder="Max. Anzahl Loginversüche"
+                   type="number" class="form-control"
+                   aria-describedby="maxLoginAttemptsHelpBlock">
+            <span id="maxLoginAttemptsHelpBlock" class="form-text text-muted">Anzahl der Versüche, den ein Benutzer durchführen kann, bis sein Konto gesperrt wird.</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Eigenes CSS</label>
+        <div class="col-8">
+            <input id="customCss" type="hidden" th:field="*{customCss}"/>
+            <div id="aceEditor" class="form-control"></div>
+            <span id="customCssHelpBlock" class="form-text text-muted">Eigenes CSS zum Konfigurieren des Aussehens des Portals</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="blockedIps" class="col-4 col-form-label">Blockierte IPs</label>
+        <div class="col-8">
+            <textarea id="blockedIps" class="form-control" name="blockedList" th:text="${blockedIps}"></textarea>
+            <span id="blockedListHelpBlock" class="form-text text-muted">Jede Zeile verkörpert einen Eintrag. Kann Benutzernamen enthalten, falls IP nicht ausgelesen werden konnte.</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-4 col-8">
+            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+<script src="/js/libs/ace/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/controller/configurations/portalController.js"></script>
+</body>
+</html>

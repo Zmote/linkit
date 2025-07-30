@@ -1,0 +1,94 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.w3.org/1999/xhtml"
+     th:fragment="form-body">
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Aktiv</label>
+        <div class="col-8">
+            <input th:field="*{enabled}" type="checkbox" class="form-check-inline js-formEnabled">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Entsperrt</label>
+        <div class="col-8">
+            <input th:field="*{accountNonLocked}" type="checkbox"
+                   class="form-check-inline js-formAccountNonLocked">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Benutzername</label>
+        <div class="col-8" th:with="hasError=${errors != null && errors.containsKey('username')}">
+            <input th:field="*{username}" placeholder="Benutzername" type="text" class="form-control js-formUsername"
+                   th:classappend="${hasError}?'is-invalid':''">
+            <div th:if="${hasError}" class="invalid-feedback d-flex flex-column">
+                <span th:each="error : ${errors.username}" th:text="${error}"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Vorname</label>
+        <div class="col-8" th:with="hasError=${errors != null && errors.containsKey('firstname')}">
+            <input th:field="*{firstname}" placeholder="Vorname" type="text" class="form-control js-formFirstname"
+                   th:classappend="${hasError}?'is-invalid':''"/>
+            <div th:if="${hasError}" class="invalid-feedback d-flex flex-column">
+                <span th:each="error : ${errors.firstname}" th:text="${error}"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Nachname</label>
+        <div class="col-8" th:with="hasError=${errors != null && errors.containsKey('lastname')}">
+            <input th:field="*{lastname}" placeholder="Nachname" type="text" class="form-control js-formLastname"
+                   th:classappend="${hasError}?'is-invalid':''"/>
+            <div th:if="${hasError}" class="invalid-feedback d-flex flex-column">
+                <span th:each="error : ${errors.lastname}" th:text="${error}"></span>
+            </div>
+        </div>
+    </div>
+    <div th:if="${user.getId() != null}" class="form-group row">
+        <label class="col-4 col-form-label">Passwort</label>
+        <div class="col-8">
+            <a class="btn btn-outline-secondary"
+               data-toggle="collapse"
+               href="#passwordCollapse"
+               role="button"
+               aria-expanded="false"
+               aria-controls="collapseExample">Ändern
+            </a>
+        </div>
+    </div>
+    <div th:if="${user.getId() != null}" class="form-group row">
+        <label class="col-4"></label>
+        <div class="col-8 collapse" id="passwordCollapse"
+             th:with="hasError=${errors != null && errors.containsKey('password')}"
+             th:classappend="${hasError}?'show':''">
+            <input th:field="*{password}" placeholder="Passwort" type="password" class="form-control js-formLastname"
+                   th:classappend="${hasError}?'is-invalid':''" autocomplete="new-password"/>
+            <div th:if="${hasError}" class="invalid-feedback d-flex flex-column">
+                <span th:each="error : ${errors.password}" th:text="${error}"></span>
+            </div>
+        </div>
+    </div>
+    <div th:unless="${user.getId() != null}" class="form-group row">
+        <label class="col-4">Passwort</label>
+        <div class="col-8" th:with="hasError=${errors != null && errors.containsKey('password')}"
+             th:classappend="${hasError}?'show':''">
+            <input th:field="*{password}" placeholder="Passwort" type="password" class="form-control js-formLastname"
+                   th:classappend="${hasError}?'is-invalid':''" autocomplete="new-password"/>
+            <div th:if="${hasError}" class="invalid-feedback d-flex flex-column">
+                <span th:each="error : ${errors.password}" th:text="${error}"></span>
+            </div>
+        </div>
+    </div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')" class="form-group row">
+        <label class="col-4 col-form-label">Rollen</label>
+        <div class="col-8">
+            <select name="roles[[id]]" type="text" class="custom-select js-formRoles js-multiSelect" multiple="multiple"
+                    required="required" aria-describedby="roleHelpBlock">
+                <option th:each="role : *{roles}" th:value="${role.id}" th:text="${role.name}"
+                        selected="selected"></option>
+                <option th:each="role : ${availableRoles}" th:value="${role.id}" th:text="${role.name}"></option>
+            </select>
+            <span id="roleHelpBlock" class="form-text text-muted ">Rolle "ROLE_USER" kann nicht entfernt werden und wird automatisch zugewiesen! (Mindestrolle)</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main_layout}">
+<body layout:fragment="content" th:fragment="body">
+<div th:if="${#maps.isEmpty(portalLinks)}" class="d-flex align-content-center align-items-center flex-column">
+    <p class="fa fa-10x">&#128549;</p>
+    <h3 class="text-center">Keine Links gefunden!</h3>
+    <p class="text-center">Auf dieser Seite sind noch keine Links verfügbar.</p>
+</div>
+<div th:replace="display_controls :: body"></div>
+<ul th:unless="${#maps.isEmpty(portalLinks)}" class="nav nav-tabs justify-content-center mt-4 mb-4" id="myTab"
+    role="tablist">
+    <li class="nav-item" th:each="entry, iter : ${portalLinks}">
+        <a class="nav-link" th:classappend="${iter.index == 0} ? 'active' : ''"
+           th:id="${'page' + entry.key + '-tab'}"
+           data-toggle="tab"
+           th:href="${'#page' + entry.key}"
+           role="tab"
+           th:aria-controls="${'page' + entry.key}"
+           th:attr="aria-selected=${iter.index == 0}">
+            <span th:text="${entry.key}"></span>
+        </a>
+    </li>
+</ul>
+<div class="tab-content" id="portalLinksHome">
+    <div th:each="entry, iter : ${portalLinks}"
+         class="tab-pane fade"
+         th:classappend="${iter.index == 0}? 'show active' : ''"
+         th:id="${'page' + entry.key}"
+         role="tabpanel"
+         th:aria-labelledby="${'page' + entry.key + '-tab'}">
+        <div class="row justify-content-center">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4" th:each="portalLink : ${entry.value}">
+                <div th:replace="card :: body"></div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profiles" role="tabpanel" aria-labelledby="profiles-tab"></div>
+</div>
+<div th:replace="add_btn :: body"></div>
+</body>
+</html>

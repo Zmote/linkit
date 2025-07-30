@@ -1,0 +1,60 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     th:fragment="form-body">
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Benutzername</label>
+        <div class="col-8" th:with="hasError=${errors != null && errors.containsKey('username')}">
+            <input th:field="*{username}" placeholder="Benutzername" type="text" class="form-control js-formUsername"
+                   aria-describedby="usernameHelpBlock" th:classappend="${hasError}?'is-invalid':''">
+            <div th:if="${hasError}" class="invalid-feedback d-flex flex-column">
+                <span th:each="error : ${errors.username}" th:text="${error}"></span>
+            </div>
+            <span id="usernameHelpBlock" class="form-text text-muted ">Achtung! Das Ändern des Benutzernamens erfordert ein neues Login!</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Vorname</label>
+        <div class="col-8" th:with="hasError=${errors != null && errors.containsKey('firstname')}">
+            <input th:field="*{firstname}" placeholder="Vorname" type="text" class="form-control js-formFirstname"
+                   aria-describedby="firstnameHelpBlock" th:classappend="${hasError}?'is-invalid':''"/>
+            <div th:if="${hasError}" class="invalid-feedback d-flex flex-column">
+                <span th:each="error : ${errors.firstname}" th:text="${error}"></span>
+            </div>
+            <span id="firstnameHelpBlock" class="form-text text-muted ">Änderung erst beim nächsten Login sichtbar.</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Nachname</label>
+        <div class="col-8" th:with="hasError=${errors != null && errors.containsKey('lastname')}">
+            <input th:field="*{lastname}" placeholder="Nachname" type="text" class="form-control js-formLastname"
+                   aria-describedby="lastnameHelpBlock" th:classappend="${hasError}?'is-invalid':''"/>
+            <div th:if="${hasError}" class="invalid-feedback d-flex flex-column">
+                <span th:each="error : ${errors.lastname}" th:text="${error}"></span>
+            </div>
+            <span id="lastnameHelpBlock" class="form-text text-muted ">Änderung erst beim nächsten Login sichtbar.</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Passwort</label>
+        <div class="col-8">
+            <a class="btn btn-outline-secondary"
+               data-toggle="collapse"
+               href="#passwordCollapse"
+               role="button"
+               aria-expanded="false"
+               aria-controls="collapseExample">Ändern
+            </a>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4"></label>
+        <div class="col-8 collapse" id="passwordCollapse"
+             th:with="hasError=${errors != null && errors.containsKey('password')}"
+             th:classappend="${hasError}?'show':''">
+            <input th:field="*{password}" placeholder="Passwort" type="password" class="form-control js-formLastname"
+                   th:classappend="${hasError}?'is-invalid':''" autocomplete="new-password"/>
+            <div th:if="${hasError}" class="invalid-feedback d-flex flex-column">
+                <span th:each="error : ${errors.password}" th:text="${error}"></span>
+            </div>
+        </div>
+    </div>
+</div>

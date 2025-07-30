@@ -1,0 +1,6 @@
+<table xmlns:th="http://www.thymeleaf.org"
+       th:fragment="table" class="table table-striped table-responsive-sm js-portalLinksTable"
+       th:with="portalLinks=${portalLinks}">
+    <th:block th:replace="configurations/portal-links/shared/list"/>
+    <script src="/js/controller/configurations/globalLinkController.js"></script>
+</table>

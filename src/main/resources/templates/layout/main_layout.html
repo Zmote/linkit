@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LinkIt Portal</title>
+        <link th:replace="layout/links"/>
+        <div th:replace="layout/scripts"></div>
+    </head>
+    <body>
+        <div th:replace="layout/header :: header"></div>
+        <div id="mainContent" class="container-fluid w-80 content-top-fix mb-5">
+            <div layout:fragment="content"></div>
+        </div>
+        <div th:replace="layout/footer :: footer"></div>
+        <div class="js-frontModalWrapper"></div>
+    </body>
+</html>

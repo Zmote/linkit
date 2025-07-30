@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="body">
+<div th:unless="${#maps.isEmpty(portalLinks)}" class="row">
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <label class="text-dark text-center">Anzeigeoptionen</label>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="input-group d-flex justify-content-center align-items-start align-content-start">
+            <div class="input-group-prepend">
+                <a href="?displayMode=gallery" class="btn"
+                   th:classappend="${displayMode != null}?(${displayMode == 'gallery'} ? 'btn-primary':'btn-light') : 'btn-primary'"
+                ><i class="fas fa-grip-horizontal"></i></a>
+            </div>
+            <div class="d-inline">
+                <a href="?displayMode=topDown" class="btn"
+                   th:classappend="${displayMode != null}?(${displayMode == 'topDown'} ? 'btn-primary':'btn-light') : 'btn-light'"
+                ><i class="fas fa-arrows-alt-v"></i></a>
+            </div>
+            <div class="input-group-append mb-2 mb-sm-0">
+                <a href="?displayMode=leftRight" class="btn"
+                   th:classappend="${displayMode != null}?(${displayMode == 'leftRight'} ? 'btn-primary':'btn-light') : 'btn-light'"
+                ><i class="fas fa-arrows-alt-h"></i></a>
+            </div>
+            <input id="linkSearch" class="form-control mr-sm-2 col-12 col-xs-4 col-sm-4 mb-2 mb-sm-0" type="search"
+                   placeholder="Suchen" aria-label="Search">
+            <div class="form-inline mb-2 mb-sm-0 mr-sm-2">
+                <select id="categoryFilter" class="form-control">
+                    <option value="">Alle Kategorien / Gruppen</option>
+                    <option th:each="category : ${availableCategories}" th:value="${category}"
+                            th:text="${category}"></option>
+                </select>
+            </div>
+            <div th:if="${#request.requestURI == '/mylinks'}"
+                 class="form-check-inline d-flex justify-content-center justify-content-md-start col-12 col-xs-4 col-sm-4 col-md-auto align-self-center mt-0 mt-sm-2 mt-md-0">
+                <input class="form-check-input" type="checkbox" value="" id="onlySharedCheckbox">
+                <label class="form-check-label" for="onlySharedCheckbox">
+                    Nur geteilte Links
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

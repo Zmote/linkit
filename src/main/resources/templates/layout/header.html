@@ -1,0 +1,76 @@
+<header th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml" class="fixed-top"
+        xmlns:sec="http://www.w3.org/1999/xhtml">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <a class="navbar-brand border-right" href="/">
+            <span class="mx-2 mr-4" th:text="${system.name}">Portal</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav w-100">
+                <li class="nav-item"
+                    th:classappend="${#request.requestURI == '/' || #request.requestURI == '/publiclinks'? 'active' : ''}">
+                    <a id="publicLinksBtn" class="nav-link">
+                        <i class="fa fa-home"></i>
+                        Öffentliche Links
+                    </a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.requestURI == '/mylinks'? 'active' : ''}">
+                    <a id="myLinksBtn" class="nav-link">
+                        <i class="fa fa-bookmark"></i>
+                        Meine Links
+                    </a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.requestURI == '/sharedwithme'? 'active' : ''}">
+                    <a id="sharedLinksBtn" class="nav-link">
+                        <i class="fa fa-share-alt-square"></i>
+                        Mit mir geteilt
+                    </a>
+                </li>
+                <li class="nav-item mr-md-auto"
+                    th:classappend="${#request.requestURI == '/credentials'? 'active' : ''}">
+                    <a id="credentialsBtn" class="nav-link">
+                        <i class="fa fa-key"></i>
+                        Passwörter
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"
+                    th:classappend="${#request.requestURI == '/configurations'? 'active' : ''}">
+                    <a id="configurationsBtn" class="nav-link">
+                        <i class="fa fa-cog"></i>
+                        Konfiguration
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right bg-dark text-light" aria-labelledby="navbarDropdown">
+                        <div class="card m-1 mx-2 d-flex flex-row-reverse flex-md-column flex-wrap justify-content-center align-items-center align-content-center">
+                            <object th:data="'https://api.adorable.io/avatars/150/' + ${#authentication.getPrincipal().getUsername()} + '.png'"
+                                    type="image/png">
+                                <img class="card-img-top img-avatar"
+                                     src="/images/default-avatar.png"
+                                     alt="User Logo">
+                            </object>
+                            <div class="card-body d-flex flex-column align-content-center align-items-center">
+                                <button class="btn btn-primary js-frontEditProfile mb-1">Profil</button>
+                                <h6 class="card-title text-dark text-center"
+                                    th:text="${loginUser.fullname}"></h6>
+                                <p class="card-text text-dark"
+                                   th:text="${'@' + #authentication.principal.username}"></p>
+                                <a href="/logout" class="btn btn-secondary m1">
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        </li>
+        </ul>
+        </div>
+    </nav>
+</header>

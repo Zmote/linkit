@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main_layout}">
+<body layout:fragment="content" th:fragment="body">
+
+<div th:if="${#maps.isEmpty(portalLinks)}" class="d-flex align-content-center align-items-center flex-column">
+    <p class="fa fa-10x">&#128549;</p>
+    <h3 class="text-center">Keine Links gefunden!</h3>
+    <p class="text-center">Auf dieser Seite sind noch keine Links verfügbar.</p>
+</div>
+<div class="mb-4 border-bottom pb-4">
+    <div th:replace="display_controls :: body"></div>
+</div>
+<div class="row justify-content-center">
+    <th:block th:each="entry : ${portalLinks}">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4" th:each="portalLink : ${entry.value}">
+            <div th:replace="card :: body"></div>
+        </div>
+    </th:block>
+</div>
+<div th:replace="add_btn :: body"></div>
+</body>
+</html>

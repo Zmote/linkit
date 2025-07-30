@@ -1,0 +1,113 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="form-body">
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Name</label>
+        <div class="col-8">
+            <input name="name" placeholder="Name" type="text" class="form-control js-formName" th:field="*{name}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Beschreibung</label>
+        <div class="col-8">
+            <input name="description" placeholder="Beschreibung (max. 255 Charaktere)" type="text"
+                   class="form-control js-formDescription"
+                   th:field="*{description}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Kategorie / Gruppe</label>
+        <div class="col-8">
+            <select class="js-formCategory" th:field="*{category}">
+                <option th:value="*{category}" th:text="*{category}" selected="selected"></option>
+                <option th:each="otherCategory : ${availableCategories}" th:value="${otherCategory}" th:text="${otherCategory}"></option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Ziel</label>
+        <div class="col-8">
+            <input name="href" placeholder="Link zur Zielseite" type="text" class="form-control js-formHref"
+                   aria-describedby="hrefHelpBlock" th:field="*{href}">
+            <span id="hrefHelpBlock" class="form-text text-muted">Ein Ziel kann eine Web - URL, eine IP - Addresse oder Teamviewer ID sein. (Relevant bei Auswahl Linktyp)</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Bild</label>
+        <div class="col-8">
+            <div class="input-group w-100">
+                <input name="media" placeholder="Bildreferenz (URL)" type="text" class="form-control js-formMedia"
+                       aria-describedby="mediaHelpBlock" th:field="*{media}">
+                <div class="input-group-append">
+                    <a class="btn btn-outline-secondary js-imageGalleryBtn"
+                       data-toggle="collapse"
+                       href="#collapseExample"
+                       role="button"
+                       aria-expanded="false"
+                       aria-controls="collapseExample">Bildergallerie
+                    </a>
+                </div>
+            </div>
+            <span id="mediaHelpBlock"
+                  class="form-text text-muted">Bild, dass beim Portallink angezeigt werden soll. Direkte Eingabe von URL zu Bild auch möglich.</span>
+        </div>
+    </div>
+    <div class="form-group-row collapse" id="collapseExample">
+        <div th:replace="configurations/portal-links/shared/image-picker :: content"></div>
+    </div>
+    <div class="form-group row">
+        <label for="type" class="col-4 col-form-label">Linktyp</label>
+        <div class="col-8">
+            <select th:field="*{type}" id="type" name="type" class="custom-select" aria-describedby="typeHelpBlock">
+                <option value="WEB">WEB</option>
+                <option value="TEAMVIEWER">TEAMVIEWER</option>
+                <option value="RDP">RDP</option>
+            </select>
+            <span id="typeHelpBlock" class="form-text text-muted ">Art des Portallinks. Für RDP u. Teamviewer werden spezielle
+            Operationen durchgeführt. RDP lädt eine Profildatei mit der konfigurierten IP - Addresse (One-Click Start).
+            Teamviewer ruft eine spezielle URL, die eine Lokalinstallation von Teamviewer, falls vorhaden, mit der
+            angegebenen ID initiert.</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="type" class="col-4 col-form-label">Login - Info</label>
+        <div class="col-8">
+            <a class="btn btn-outline-secondary"
+               data-toggle="collapse"
+               href="#passwordCollapse"
+               role="button"
+               aria-expanded="false"
+               aria-controls="collapseExample">Anzeigen
+            </a>
+        </div>
+    </div>
+    <div class="form-group-row collapse" id="passwordCollapse">
+        <div class="form-group row">
+            <label class="col-4 col-form-label">Login</label>
+            <div class="col-8">
+                <input name="login" placeholder="Login" type="text"
+                       class="form-control js-formLogin" autocomplete="new-password"
+                       th:field="*{login}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-4 col-form-label">Passwort</label>
+            <div class="col-8">
+                <input name="password" placeholder="Passwort" type="password"
+                       class="form-control js-formPassword" autocomplete="new-password"
+                       th:value="*{password}">
+            </div>
+        </div>
+    </div>
+    <div th:if="*{owner != null}" class="form-group row">
+        <label class="col-4 col-form-label">Geteilt mit</label>
+        <div class="col-8">
+            <select name="sharedUsers[[id]]" type="text" class="custom-select js-formProfiles js-multiSelect"
+                    multiple="multiple">
+                <option th:each="user : ${assignedUsers}" th:value="${user.id}"
+                        th:text="${user.username}"
+                        selected="selected"></option>
+                <option th:each="user : ${availableUsers}" th:value="${user.id}"
+                        th:text="${user.username}"></option>
+            </select>
+        </div>
+    </div>
+</div>

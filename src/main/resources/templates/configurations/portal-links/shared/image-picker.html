@@ -1,0 +1,28 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     th:fragment="content"
+     class="mb-3 mt-3 offset-lg-4 col-12 col-lg-8 js-imagePickerModalBody">
+    <select class="image-picker show-html js-imagePicker">
+        <option value=""></option>
+        <option th:each="thumbnail, iter : ${thumbnails}"
+                th:data-img-src="${thumbnail}"
+                th:value="${iter.index}"
+                data-img-class="img-square"></option>
+    </select>
+    <div class="d-flex flex-wrap justify-content-end align-items-start align-content-start py-1 border-top mb-3 border-bottom bg-light">
+        <div class="w-100">
+            <form class="js-imageUploadForm" enctype="multipart/form-data">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input js-fileInputGroup" accept="image/*">
+                        <label class="custom-file-label text-truncate btn-secondary js-formFileInputGroupLabel">Wähle Datei...</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary js-uploadImageBtn">
+                            Uploaden
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

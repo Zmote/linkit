@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/webjars/font-awesome/css/fontawesome.min.css"/>
+<link rel="stylesheet" href="/webjars/font-awesome/css/brands.min.css"/>
+<link rel="stylesheet" href="/webjars/font-awesome/css/solid.min.css"/>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/jquery.lwMultiSelect.css"/>
+<link rel="stylesheet" href="/css/image-picker.css"/>
+<link rel="stylesheet" href="/css/animate.css"/>
+<link rel="stylesheet" href="/css/selectize.css"/>
+<link rel="stylesheet" href="/css/app.css"/>
+<link rel="stylesheet" href="/css/app.mobile.css"/>
+<style xmlns:th="http://www.thymeleaf.org"
+       th:if="${system != null && system.getCustomCss() != null && !system.getCustomCss().isEmpty()}"
+       th:text="${system.customCss}"></style>

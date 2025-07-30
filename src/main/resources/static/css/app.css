@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+}
+
+#aceEditor {
+    height: 400px;
+}
+
+
+.add-button-fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 64px;
+    height: 64px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.content-top-fix {
+    margin-top: 5rem;
+}
+
+.card .btn {
+    border: none;
+}
+
+.card {
+    box-shadow: none;
+}
+
+.floating-pin, .floating-pin-img-picker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    border-radius: 8% !important;
+}
+
+.floating-pin-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: 8% !important;
+}
+
+.z-index-2{
+    z-index:2;
+}
+
+.floating-pin-img-picker {
+    font-size: 0.75rem;
+    padding: 0 4px;
+    cursor: pointer;
+}
+
+.flex-basis-100 {
+    flex-basis: 100%;
+}
+
+.flex-width-100 {
+    flex: 1 1 100%;
+}
+
+/* For Image Picker */
+img.img-square {
+    height: 100px;
+}
+
+img.img-avatar {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+li.img-square {
+    position: relative;
+}
+
+#imagePickerModalBody .thumbnails {
+    max-height: 640px;
+    overflow: auto;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.link-card, .link-card:hover {
+    text-decoration: none;
+    color: #f2f2f2;
+}
+
+.link-card {
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -8px #777;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.link-card-text {
+    padding: 1rem;
+    margin: 0;
+    border: none;
+    text-align: center;
+    width: 100%;
+}
+
+.link-image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+    background-color: #f2f2f2;
+}
+
+.link-image img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#linkSearch {
+    flex: 0 1 200px;
+}
+
+.link-card:hover .overlay, .link-card:active .overlay,
+.link-card:hover .overlay-ext, .link-card:active .overlay-ext {
+    opacity: 1;
+}
+
+.login-form {
+    width: 340px;
+    margin: 50px auto;
+}
+
+.login-form form {
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.login-form h2 {
+    margin: 0 0 15px;
+}
+
+.login-form .form-control, .login-form .btn {
+    min-height: 38px;
+    border-radius: 2px;
+}
+
+.login-form .btn {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.nav-tabs a {
+    color: #8d8d8d;
+}
+
+#navbarTogglerDemo03 .nav-item > a {
+    cursor: pointer;
+}
+
+.overlay, .overlay-ext {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    z-index: 1;
+    background-color: rgba(20, 23, 25, 0.9);
+    overflow: auto;
+}
+
+.overlay-ext{
+    background-color:transparent;
+}
+
+.td-max-width {
+    max-width: 100px;
+}
+
+.text {
+    font-size: 100%;
+    padding: 8px;
+}
+
+.text-highlight {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.w-80 {
+    width: 80% !important;
+}

@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="body" th:remove="tag">
+<a class="h-100 d-flex flex-column link-card btn-sm btn-primary js-card"
+   th:data-title="${portalLink.getName()}"
+   th:data-category="${portalLink.getCategory()}"
+   th:data-shared="${portalLink.getSharedUsers() != null &&
+    !portalLink.getSharedUsers().isEmpty()}"
+   th:href="${portalLink.getHref()}" target="_blank"
+   th:with="type=${ {'fa-terminal bg-dark', 'fa-desktop bg-info', 'fa-link bg-success'} }">
+    <i th:class="'fas ' + ${type[__${portalLink.getType().ordinal()}__]} +
+            ' floating-pin p-3 shadow-sm text-light'"></i>
+    <i th:if="${#request.requestURI != '/sharedwithme' && portalLink.getSharedUsers() != null &&
+    !portalLink.getSharedUsers().isEmpty()}"
+       class="fas fa-users floating-pin-left bg-primary p-3 shadow-sm text-light"></i>
+    <div class="link-image">
+        <img th:src="${portalLink.getMedia().isEmpty()? '/images/default.png' : portalLink.getMedia()}"
+             src="/images/default.png" alt="Logo"/>
+        <div class="overlay d-flex justify-content-center align-items-center flex-wrap">
+            <div class="text flex-grow text-highlight" th:text="${portalLink.getDescription()}"></div>
+        </div>
+        <div class="overlay-ext">
+            <div class="floating-pin-left z-index-2">
+                <button th:data-id="${portalLink.getId()}" th:unless="${#request.requestURI == '/sharedwithme'}"
+                        class="btn btn-light shadow-sm js-frontEditPortalLink ml-2 mr-1 mt-2">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button th:data-id="${portalLink.getId()}" th:unless="${#request.requestURI == '/sharedwithme'}"
+                        class="btn btn-danger shadow-sm js-frontDeletePortalLink mr-1 mt-2">
+                    <i class="fas fa-trash"></i>
+                </button>
+                <button th:if="${portalLink.getLogin() != null || portalLink.getPassword() != null}"
+                        th:data-id="${portalLink.getId()}"
+                        th:classappend="${#request.requestURI == '/sharedwithme'}?'ml-2':''"
+                        class="btn btn-warning shadow-sm js-frontShowPassword mt-2">
+                    <i class="fas fa-key"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-img-bottom border-top">
+        <h6 class="link-card-text text-truncate" th:text="${portalLink.getName()}"></h6>
+    </div>
+</a>
+</body>
+</html>
