@@ -91,7 +91,7 @@ public class AppController extends AbstractPortalController {
 
     private Boolean hasLoginPasswordDefined(PortalLinkDto portalLink) {
         return (portalLink.getLogin() != null && !portalLink.getLogin().isEmpty()) &&
-                (portalLink.getPassword() != null && !portalLink.getLogin().isEmpty());
+                (portalLink.getPassword() != null && !portalLink.getPassword().isEmpty());
     }
 
     private String indexTemplate(Model model, HttpServletRequest request, String displayMode) {
