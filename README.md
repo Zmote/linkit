@@ -19,7 +19,7 @@ STORAGE_TYPE=system
 ```
 
 ## TODOs
- 
+- [ ] Upgrade Spring Framework
 - [ ] Refactor Front-End JS Code
   - [x] Split into more files
   - ~~[ ] Implement smarter script loading~~
