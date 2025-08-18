@@ -1,12 +1,20 @@
 package ch.zmotions.linkit.config.initializers;
 
+import ch.zmotions.linkit.commons.types.PortalLinkType;
+import ch.zmotions.linkit.config.properties.AppProperties;
 import ch.zmotions.linkit.config.properties.AuthProperties;
+import ch.zmotions.linkit.config.properties.app.DatabaseProperties;
+import ch.zmotions.linkit.config.properties.app.database.PopulateProperties;
+import ch.zmotions.linkit.config.properties.app.database.links.LinkProperties;
 import ch.zmotions.linkit.service.domain.PortalEO;
+import ch.zmotions.linkit.service.domain.PortalLinkEO;
 import ch.zmotions.linkit.service.domain.RoleEO;
 import ch.zmotions.linkit.service.domain.UserEO;
+import ch.zmotions.linkit.service.domain.repository.PortalLinkRepository;
 import ch.zmotions.linkit.service.domain.repository.PortalRepository;
 import ch.zmotions.linkit.service.domain.repository.RoleRepository;
 import ch.zmotions.linkit.service.domain.repository.UserRepository;
+import ch.zmotions.linkit.service.util.auth.AESEncryptorDecryptor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,22 +24,33 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Component
-@ConditionalOnProperty(name = "app.db-init", havingValue = "true")
+@ConditionalOnProperty(name = "app.db.initialize", havingValue = "true")
 public class DbInitializer implements CommandLineRunner {
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private PortalRepository portalRepository;
+    private final AppProperties appProperties;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AESEncryptorDecryptor aesEncryptorDecryptor;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PortalRepository portalRepository;
+    private final PortalLinkRepository portalLinkRepository;
     private final AuthProperties authProperties;
 
     public DbInitializer(BCryptPasswordEncoder bCryptPasswordEncoder,
-                         UserRepository userRepository, RoleRepository roleRepository,
-                         PortalRepository portalRepository, AuthProperties authProperties) {
+                         AESEncryptorDecryptor aesEncryptor,
+                         UserRepository userRepository,
+                         RoleRepository roleRepository,
+                         PortalRepository portalRepository,
+                         PortalLinkRepository portalLinkRepository,
+                         AuthProperties authProperties,
+                         AppProperties appProperties) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.aesEncryptorDecryptor = aesEncryptor;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.portalRepository = portalRepository;
+        this.portalLinkRepository = portalLinkRepository;
         this.authProperties = authProperties;
+        this.appProperties = appProperties;
     }
 
     @Override
@@ -40,7 +59,33 @@ public class DbInitializer implements CommandLineRunner {
         createDefaultRolesIfNotExists();
         createDefaultAdminUserIfNotExists();
         createDefaultPortalIfNotExists();
+        DatabaseProperties appDb = this.appProperties.getDb();
+        PopulateProperties populate = appDb.getPopulate();
+        if(appDb.getInitialize()){
+            populateWithDummyData(populate);
+        }
         System.out.println(" -- Database defaults have been initialized");
+    }
+
+    private void populateWithDummyData(PopulateProperties populate) {
+        System.out.println(" -- Populate with dummy data");
+        LinkProperties links = populate.getLinks();
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for(int i = 0; i < links.getCount(); i++) {
+            PortalLinkEO portalLinkEO = new PortalLinkEO();
+            char prefix = alphabet.charAt(i % (alphabet.length()));
+            portalLinkEO.setName(prefix + "ummy Link");
+            portalLinkEO.setDescription("A Dummy Link");
+            portalLinkEO.setType(PortalLinkType.WEB);
+            portalLinkEO.setCategory(prefix + "ummy");
+            portalLinkEO.setHref("https://www.20min.ch");
+            portalLinkEO.setPublic(true);
+            if(i % 3 == 0){
+                portalLinkEO.setLogin(prefix + "dmin");
+                portalLinkEO.setPassword(aesEncryptorDecryptor.encrypt(prefix + "dmin"));
+            }
+            portalLinkRepository.save(portalLinkEO);
+        }
     }
 
     private void createDefaultRolesIfNotExists() {

@@ -9,9 +9,14 @@ spring:
       ddl-auto: ${DDL_AUTO:update}
     show-sql: true
 
-#DB Initialization property
+# App Initialization property
 app:
-  db-init: true
+  db:
+    initialize: true
+    populate:
+      enabled: true
+      links:
+        count: 100
 
 # File storage configuration
 storage:

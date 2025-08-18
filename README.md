@@ -76,6 +76,9 @@ STORAGE_TYPE=system
 - [x] ~~Show Passwords on Credentials page when button "show" clicked, modal (could be the same modal for links)~~
 - [ ] Bulk Operations
 - [ ] Add auto thumbnail retrieval on web urls
+- [ ] Replace sout calls with logger, define logging strategy
+- [ ] Add Auditing to critical processes
+- [ ] Add Apache Guacamole for Remote Access Links
 
 ## Bugs
 - [ ] New user login redirect broken behavior

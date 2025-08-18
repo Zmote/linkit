@@ -37,7 +37,7 @@ public class AESEncryptorDecryptor {
         return new SecretKeySpec(tmp.getEncoded(), "AES");
     }
 
-    String encrypt(String strToEncrypt) {
+    public String encrypt(String strToEncrypt) {
         if (strToEncrypt == null) return "";
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");

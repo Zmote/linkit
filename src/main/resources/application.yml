@@ -4,7 +4,7 @@ server:
   # Disable the default Whitelabel error page
   error:
     whitelabel:
-      isEnabled: false
+      enabled: false
   servlet:
     session:
       cookie:

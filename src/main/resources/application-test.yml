@@ -19,7 +19,8 @@ selenide:
 
 # DB Initialization property
 app:
-  db-init: true
+  db:
+    initialize: true
 
 # Security / authentication
 auth:
