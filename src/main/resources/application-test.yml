@@ -1,0 +1,40 @@
+# Spring config
+spring:
+  datasource:
+    name: TestDB
+    url: jdbc:h2:mem:TestDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+# Storage config
+storage:
+  location: ./test-uploads
+  type: system
+
+# Selenide configurations
+selenide:
+  browser: firefox
+  headless: true
+
+# DB Initialization property
+app:
+  db-init: true
+
+# Security / authentication
+auth:
+  initialPass: root@YOUDONTKNOWME2019
+
+# Management endpoints
+management:
+  endpoints:
+    jmx:
+      exposure:
+        exclude: "*"
+    web:
+      exposure:
+        exclude: "*"
+
+springdoc:
+  api-docs:
+    enabled: false

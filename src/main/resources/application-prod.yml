@@ -1,0 +1,7 @@
+#Spring config
+spring:
+  datasource:
+    name: ProdDb
+  jpa:
+    hibernate:
+      ddl-auto: none

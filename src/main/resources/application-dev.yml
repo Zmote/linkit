@@ -1,0 +1,49 @@
+# Spring config
+spring:
+  devtools:
+    add-properties: true
+  datasource:
+    name: DevDB
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    show-sql: true
+
+#DB Initialization property
+app:
+  db-init: true
+
+# File storage configuration
+storage:
+  type: ${STORAGE_TYPE:system}
+
+# Security / authentication
+auth:
+  initialPass: ${INITIAL_ADMIN_PASS:admin}
+
+# Logging
+logging:
+  level:
+    web: DEBUG
+
+# Server
+server:
+  servlet:
+    session:
+      cookie:
+        secure: false
+
+# Management endpoints
+management:
+  endpoints:
+    jmx:
+      exposure:
+        exclude: null
+    web:
+      exposure:
+        include: "*"
+
+# Swagger / SpringDoc
+springdoc:
+  api-docs:
+    enabled: false

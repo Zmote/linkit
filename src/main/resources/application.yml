@@ -1,0 +1,54 @@
+# Application server settings
+server:
+  port: 8081
+  # Disable the default Whitelabel error page
+  error:
+    whitelabel:
+      isEnabled: false
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: true
+
+# Spring Global Configs
+spring:
+  devtools:
+    add-properties: false
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# File storage configuration
+storage:
+  location: ./uploads
+  type: ${STORAGE_TYPE}
+  key: ${STORAGE_KEY}
+  secret: ${STORAGE_SECRET}
+
+# Security / authentication
+auth:
+  key: ${SERVER_KEY}
+  salt: ${SERVER_SALT}
+  initialPass: ${INITIAL_ADMIN_PASS}
+
+# Management endpoints
+management:
+  endpoints:
+    jmx:
+      exposure:
+        exclude: "*"
+    web:
+      exposure:
+        include: health
+
+# Swagger / SpringDoc
+springdoc:
+  api-docs:
+    enabled: false
