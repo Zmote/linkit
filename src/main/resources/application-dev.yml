@@ -16,7 +16,7 @@ app:
     populate:
       enabled: true
       links:
-        count: 100
+        count: 24
 
 # File storage configuration
 storage:

@@ -114,7 +114,7 @@ public class DbInitializer implements CommandLineRunner {
             adminUser.setPassword(bCryptPasswordEncoder.encode(authProperties.getInitialPass()));
             adminUser.setFirstname("Administrator");
             adminUser.setLastname("Administrator");
-            adminUser.setNew(true);
+            adminUser.setNew(false);
             adminUser.setAccountNonLocked(true);
             adminUser.setEnabled(true);
             userRepository.save(adminUser);
