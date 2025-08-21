@@ -32,6 +32,13 @@
                             th:text="${category}"></option>
                 </select>
             </div>
+            <div class="form-inline mb-2 mb-sm-0 mr-sm-2">
+                <select id="typeFilter" class="form-control">
+                    <option value="">Alle Typen</option>
+                    <option th:each="type : ${availableTypes}" th:value="${type}"
+                            th:text="${type}"></option>
+                </select>
+            </div>
             <div th:if="${#request.requestURI == '/mylinks'}"
                  class="form-check-inline d-flex justify-content-center justify-content-md-start col-12 col-xs-4 col-sm-4 col-md-auto align-self-center mt-0 mt-sm-2 mt-md-0">
                 <input class="form-check-input" type="checkbox" value="" id="onlySharedCheckbox">

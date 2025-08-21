@@ -80,7 +80,7 @@ STORAGE_TYPE=system
 - [ ] Add Auditing to critical processes
 - [ ] Add Apache Guacamole for Remote Access Links
 - [ ] Add 3rd Party Login Handlers (i.e. Login with Google etc.)
-- [ ] Add Filters based on Link-Type
+- [x] ~~Add Filters based on Link-Type~~
 
 ## Bugs
 - [ ] New user login redirect broken behavior

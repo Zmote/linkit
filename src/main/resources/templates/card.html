@@ -3,6 +3,7 @@
 <a class="h-100 d-flex flex-column link-card btn-sm btn-primary js-card"
    th:data-title="${portalLink.getName()}"
    th:data-category="${portalLink.getCategory()}"
+   th:data-type="${portalLink.getType()}"
    th:data-shared="${portalLink.getSharedUsers() != null &&
     !portalLink.getSharedUsers().isEmpty()}"
    th:href="${portalLink.getHref()}" target="_blank"

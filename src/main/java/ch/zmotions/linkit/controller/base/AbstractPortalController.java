@@ -38,6 +38,7 @@ public abstract class AbstractPortalController extends AbstractController {
                 .filter(category -> category != null && !category.isEmpty())
                 .distinct()
                 .collect(Collectors.toList()));
+        model.addAttribute("availableTypes", PortalLinkType.values());
     }
 
     private void populateTypeUrls(PortalLinkDto portalLink) {

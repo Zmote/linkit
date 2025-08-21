@@ -92,13 +92,17 @@ AppController.prototype.loadConfigurations = function () {
 AppController.prototype.filterLinks = function () {
     var searchTerm = $("#linkSearch").val().toLocaleLowerCase();
     var searchCategory = $("#categoryFilter").find("option:selected").val();
+    var searchType = $("#typeFilter").find("option:selected").val();
     var searchShared = $("#onlySharedCheckbox").is(":checked");
     $(".js-card").each(function () {
         var elem = $(this);
         var title = elem.data("title").toLowerCase();
         var category = elem.data("category");
+        var type = elem.data('type');
         var shared = elem.data("shared");
-        if ((!searchTerm || title.includes(searchTerm)) && (!searchCategory || category === searchCategory)
+        if ((!searchTerm || title.includes(searchTerm))
+            && (!searchCategory || category === searchCategory)
+            && (!searchType || type === searchType)
             && (!searchShared || searchShared === shared)) {
             elem.parent().show();
         } else {
@@ -262,6 +266,9 @@ AppController.prototype.init = function () {
         that.filterLinks();
     });
     body.on("change", "#categoryFilter", function () {
+        that.filterLinks();
+    });
+    body.on("change", "#typeFilter", function () {
         that.filterLinks();
     });
     body.on("click", "#onlySharedCheckbox", function () {
