@@ -13,8 +13,12 @@ server:
 
 # Spring Global Configs
 spring:
+  thymeleaf:
+    encoding: UTF-8
   devtools:
     add-properties: false
+    livereload:
+      enabled: false
   jpa:
     properties:
       hibernate:

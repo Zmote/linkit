@@ -17,5 +17,10 @@
         </div>
         <div th:replace="layout/footer :: footer"></div>
         <div class="js-frontModalWrapper"></div>
+        <!-- Dev dependencies for hot reload of Thymeleaf frontend -->
+        <script
+                th:with="host=${#request.getServerName()},port=${@environment.getProperty('spring.devtools.livereload.port')}"
+                th:src="@{js/livereload.js(host=${host},port=${port == null}? 35729 : ${port})}"
+                th:if="${@environment.getProperty('spring.devtools.livereload.enabled')}"></script>
     </body>
 </html>

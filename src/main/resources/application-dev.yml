@@ -2,8 +2,14 @@
 spring:
   devtools:
     add-properties: true
+    livereload:
+      enabled: true #default
+      port: 35729 #default
   thymeleaf:
     cache: false
+  resources: # Static resources
+    chain:
+      cache: false
   datasource:
     name: DevDB
   jpa:
