@@ -19,11 +19,27 @@ STORAGE_TYPE=system
 ```
 
 ## TODOs
+- [ ] Containerize with Micronaut / Quarkus when API / Frontend separated
+- [ ] Enable CSRF for view based flows
+- [ ] Split API / View Controllers (also, do API versioned)
 - [ ] Upgrade Spring Framework
+- [ ] Bootstrap Upgrade from 4 to 5
+- [ ] Add Pass Encryption Migrator (for pass encryption key rotation)
+- [ ] Add basic ChatBot integration
+- [ ] Add notifications system (f.ex. if another user adds a new link)
+  - Backed by a Background Job system, Spring Batch?
+- [ ] Daily "Link" suggestions
+- [ ] Link Voting System
+- [ ] Add monitoring
+  - [ ] Track used API endpoints
+  - [ ] App performance
+- [ ] Add Migration Flow
+  - Liquibase or similar
 - [ ] Refactor Front-End JS Code
   - [x] Split into more files
   - ~~[ ] Implement smarter script loading~~
     - Will be done with VueJS Frontend
+  - [ ] Remove jQuery dependency
   - [x] ~~Adjust visibility of functions / encapsulate properly~~
 - ~~[ ] Refactor Backend Controller Code~~
   ~~- [ ] Split into REST and Content Endpoints~~
@@ -78,8 +94,9 @@ STORAGE_TYPE=system
 - [ ] Add auto thumbnail retrieval on web urls
 - [ ] Replace sout calls with logger, define logging strategy
 - [ ] Add Auditing to critical processes
-- [ ] Add Apache Guacamole for Remote Access Links
+- [ ] Add Apache Guacamole for Remote Access Links (RDP, VNC etc.)
 - [ ] Add 3rd Party Login Handlers (i.e. Login with Google etc.)
+- [ ] Add Chat to communicate with other users
 - [x] ~~Add Filters based on Link-Type~~
 
 ## Bugs
