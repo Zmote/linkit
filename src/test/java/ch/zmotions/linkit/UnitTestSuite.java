@@ -8,11 +8,11 @@ import ch.zmotions.linkit.service.domain.UserEOTest;
 import ch.zmotions.linkit.service.util.JpegCompressorTest;
 import ch.zmotions.linkit.service.util.auth.AESEncryptorDecryptorTest;
 import ch.zmotions.linkit.service.util.sort.SortHelperTest;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
+@Suite
+@SelectClasses({
         ChangePasswordUserDtoTest.class,
         CredentialsDtoTest.class,
         FileResponseDtoTest.class,

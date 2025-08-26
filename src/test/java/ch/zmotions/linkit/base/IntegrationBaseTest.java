@@ -2,8 +2,8 @@ package ch.zmotions.linkit.base;
 
 import ch.zmotions.linkit.config.TestDbInitializer;
 import ch.zmotions.linkit.config.properties.AuthProperties;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,9 +26,10 @@ public abstract class IntegrationBaseTest extends BaseTest {
     private AuthProperties authProperties;
 
     @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     protected MockMvc mvc;
 
-    @Before
+    @BeforeEach
     public void setup() {
         testDbInitializer.setup();
         Authentication authentication = authenticationManager.authenticate(
@@ -36,7 +37,7 @@ public abstract class IntegrationBaseTest extends BaseTest {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         SecurityContextHolder.getContext().setAuthentication(null);
         testDbInitializer.tearDown();

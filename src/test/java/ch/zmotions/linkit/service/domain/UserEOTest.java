@@ -1,31 +1,31 @@
 package ch.zmotions.linkit.service.domain;
 
 import ch.zmotions.linkit.config.EOFactory;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserEOTest {
     private static ValidatorFactory validatorFactory;
     private static Validator validator;
 
-    @BeforeClass
+    @BeforeAll
     public static void createValidator() {
         validatorFactory = Validation.buildDefaultValidatorFactory();
         validator = validatorFactory.getValidator();
     }
 
-    @AfterClass
+    @AfterAll
     public static void close() {
         validatorFactory.close();
     }

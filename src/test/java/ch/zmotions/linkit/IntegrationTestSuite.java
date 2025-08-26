@@ -15,11 +15,11 @@ import ch.zmotions.linkit.controller.users.UserControllerTest;
 import ch.zmotions.linkit.facade.*;
 import ch.zmotions.linkit.service.impl.*;
 import ch.zmotions.linkit.service.util.auth.AuthHelperTest;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
+@Suite
+@SelectClasses({
         GlobalAttributesAdviceTest.class,
         GlobalExceptionHandlerAdviceTest.class,
         LoginControllerTest.class,

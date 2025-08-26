@@ -2,7 +2,7 @@ package ch.zmotions.linkit.ui;
 
 import ch.zmotions.linkit.base.UITest;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;

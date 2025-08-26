@@ -1,15 +1,17 @@
 package ch.zmotions.linkit.service.util.auth;
 
 import ch.zmotions.linkit.config.properties.AuthProperties;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 
 public class AESEncryptorDecryptorTest {
     private AuthProperties authProperties;
 
-    @Before
+    @BeforeEach
     public void setup() {
         authProperties = new AuthProperties();
         authProperties.setKey("test");
@@ -31,6 +33,5 @@ public class AESEncryptorDecryptorTest {
         String encryptedPass = aesEncryptorDecryptor.encrypt(passToEncrypt);
         assertNotEquals(passToEncrypt, encryptedPass);
         assertEquals(passToEncrypt, aesEncryptorDecryptor.decrypt(encryptedPass));
-
     }
 }

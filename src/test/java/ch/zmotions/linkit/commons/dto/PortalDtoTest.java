@@ -1,11 +1,11 @@
 package ch.zmotions.linkit.commons.dto;
 
 import ch.zmotions.linkit.config.DtoFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PortalDtoTest {
 

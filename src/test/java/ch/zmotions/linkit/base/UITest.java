@@ -1,12 +1,12 @@
 package ch.zmotions.linkit.base;
 
 import com.codeborne.selenide.Configuration;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class UITest extends BaseTest {
@@ -24,12 +24,12 @@ public abstract class UITest extends BaseTest {
 
     protected String baseUrl = "";
 
-    @Before
+    @BeforeEach
     public void setup() {
         this.baseUrl = "http://localhost:" + this.basePort;
 
         //Selenide configuration
         Configuration.browser = selenideBrowser;
-        Configuration.headless = Boolean.valueOf(selenideHeadless);
+        Configuration.headless = Boolean.parseBoolean(selenideHeadless);
     }
 }

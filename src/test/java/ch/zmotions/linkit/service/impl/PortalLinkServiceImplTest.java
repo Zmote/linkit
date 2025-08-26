@@ -4,8 +4,8 @@ import ch.zmotions.linkit.base.IntegrationBaseTest;
 import ch.zmotions.linkit.commons.types.PortalLinkType;
 import ch.zmotions.linkit.service.PortalLinkService;
 import ch.zmotions.linkit.service.domain.PortalLinkEO;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class PortalLinkServiceImplTest extends IntegrationBaseTest {
     @Autowired
     protected PortalLinkService portalLinkService;
 
-    @Before
+    @BeforeEach
     public void setup() {
         super.setup();
         addPortalLinks();
