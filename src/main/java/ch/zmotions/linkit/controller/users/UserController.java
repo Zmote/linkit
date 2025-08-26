@@ -13,8 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -56,7 +56,7 @@ public class UserController extends AbstractUserController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteUser(@PathVariable("id") UUID id) {
+    public ResponseEntity<String> deleteUser(@PathVariable("id") UUID id) {
         Optional<UserDto> toRemoveUser = userServiceFacade.findById(id);
         if (toRemoveUser.isPresent()) {
             invalidateSession(toRemoveUser.get().getUsername());

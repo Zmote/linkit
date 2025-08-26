@@ -33,9 +33,9 @@ public class PortalLinkServiceImpl implements PortalLinkService {
     @PreAuthorize("isAuthenticated() && (hasRole('ROLE_USER') || hasRole('ROLE_ADMIN'))")
     @Override
     public Optional<PortalLinkEO> create(PortalLinkEO newEo) {
-        Optional<PortalLinkEO> savedUser = save(new PortalLinkEO());
-        if (savedUser.isPresent()) {
-            newEo.setId(savedUser.get().getId());
+        Optional<PortalLinkEO> savedPortalLink = save(new PortalLinkEO());
+        if (savedPortalLink.isPresent()) {
+            newEo.setId(savedPortalLink.get().getId());
             return update(newEo);
         }
         return Optional.empty();

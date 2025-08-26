@@ -57,18 +57,18 @@
     <div class="tab-content" id="mainContent">
         <script src="/js/controller/configurations/crudController.js"></script>
         <div class="tab-pane fade show active" id="globallinks" role="tabpanel" aria-labelledby="globallinks-tab">
-            <div th:replace="configurations/portal-links/global-links/list"></div>
+            <div th:replace="~{configurations/portal-links/global-links/list}"></div>
         </div>
         <div class="tab-pane fade" id="personallinks" role="tabpanel" aria-labelledby="personallinks-tab">
-            <div th:replace="configurations/portal-links/personal-links/list"></div>
+            <div th:replace="~{configurations/portal-links/personal-links/list}"></div>
         </div>
         <div sec:authorize="hasRole('ROLE_ADMIN')" class="tab-pane fade" id="users" role="tabpanel"
              aria-labelledby="users-tab">
-            <div th:replace="configurations/users/userlist"></div>
+            <div th:replace="~{configurations/users/userlist}"></div>
         </div>
         <div sec:authorize="hasRole('ROLE_ADMIN')" class="tab-pane fade" id="portal" role="tabpanel"
              aria-labelledby="portal-tab">
-            <div th:replace="configurations/portal/index :: body"></div>
+            <div th:replace="~{configurations/portal/index :: body}"></div>
         </div>
         <div sec:authorize="hasRole('ROLE_ADMIN')" class="tab-pane fade" id="bugreport"
              role="tabpanel">

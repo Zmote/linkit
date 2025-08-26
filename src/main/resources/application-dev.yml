@@ -7,14 +7,17 @@ spring:
       port: 35729 #default
   thymeleaf:
     cache: false
-  resources: # Static resources
-    chain:
-      cache: false
+  web:
+    resources:
+      chain:
+        cache: false
   datasource:
     name: DevDB
+    url: jdbc:h2:mem:DevDB
+    driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: ${DDL_AUTO:update}
+      ddl-auto: ${DDL_AUTO:create}
     show-sql: true
 
 # App Initialization property
@@ -59,4 +62,4 @@ management:
 # Swagger / SpringDoc
 springdoc:
   api-docs:
-    enabled: false
+    enabled: true

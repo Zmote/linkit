@@ -11,33 +11,33 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav w-100">
                 <li class="nav-item"
-                    th:classappend="${#request.requestURI == '/' || #request.requestURI == '/publiclinks'? 'active' : ''}">
+                    th:classappend="${requestURI == '/' || requestURI == '/publiclinks'? 'active' : ''}">
                     <a id="publicLinksBtn" class="nav-link">
                         <i class="fa fa-home"></i>
                         Öffentliche Links
                     </a>
                 </li>
-                <li class="nav-item" th:classappend="${#request.requestURI == '/mylinks'? 'active' : ''}">
+                <li class="nav-item" th:classappend="${requestURI == '/mylinks'? 'active' : ''}">
                     <a id="myLinksBtn" class="nav-link">
                         <i class="fa fa-bookmark"></i>
                         Meine Links
                     </a>
                 </li>
-                <li class="nav-item" th:classappend="${#request.requestURI == '/sharedwithme'? 'active' : ''}">
+                <li class="nav-item" th:classappend="${requestURI == '/sharedwithme'? 'active' : ''}">
                     <a id="sharedLinksBtn" class="nav-link">
                         <i class="fa fa-share-alt-square"></i>
                         Mit mir geteilt
                     </a>
                 </li>
                 <li class="nav-item mr-md-auto"
-                    th:classappend="${#request.requestURI == '/credentials'? 'active' : ''}">
+                    th:classappend="${requestURI == '/credentials'? 'active' : ''}">
                     <a id="credentialsBtn" class="nav-link">
                         <i class="fa fa-key"></i>
                         Passwörter
                     </a>
                 </li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"
-                    th:classappend="${#request.requestURI == '/configurations'? 'active' : ''}">
+                    th:classappend="${requestURI == '/configurations'? 'active' : ''}">
                     <a id="configurationsBtn" class="nav-link">
                         <i class="fa fa-cog"></i>
                         Konfiguration
@@ -68,9 +68,8 @@
                             </div>
                         </div>
                     </div>
-        </div>
-        </li>
-        </ul>
+                </li>
+            </ul>
         </div>
     </nav>
 </header>

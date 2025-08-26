@@ -22,8 +22,10 @@ spring:
   jpa:
     properties:
       hibernate:
-        temp:
-          use_jdbc_metadata_defaults: false
+        boot:
+          allow_jdbc_metadata_access: true # needed for auto-detection
+    # needs to be true as we use entity access inside thymeleaf that need db conn due to lazy init
+    open-in-view: true
   servlet:
     multipart:
       max-file-size: 10MB

@@ -7,7 +7,7 @@ import ch.zmotions.linkit.facade.UserServiceFacade;
 import ch.zmotions.linkit.service.StorageService;
 import org.springframework.ui.Model;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

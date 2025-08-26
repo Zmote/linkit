@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body" th:fragment="modal-body">
                 <form class="js-form" th:object="${user}">
-                    <div th:replace="profile/form :: form-body"></div>
+                    <div th:replace="~{profile/form :: form-body}"></div>
                 </form>
             </div>
             <div class="modal-footer">

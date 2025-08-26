@@ -1,6 +1,6 @@
 package ch.zmotions.linkit.service.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -8,7 +8,7 @@ import java.util.UUID;
 @Table(name = "Portals")
 public class PortalEO implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column

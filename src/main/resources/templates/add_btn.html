@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="body" th:remove="tag">
-<button th:unless="${#request.requestURI == '/sharedwithme'}"
+<button th:unless="${requestURI == '/sharedwithme'}"
         class="btn btn-primary add-button-fixed mb-5 mr-3 shadow btn-lg js-frontAddPortalLink"><i class="fa fa-plus"></i></button>
 </body>
 </html>

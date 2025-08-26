@@ -3,7 +3,7 @@ package ch.zmotions.linkit.service.domain;
 
 import ch.zmotions.linkit.commons.types.PortalLinkType;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @Table(name = "PortalLinks")
 public class PortalLinkEO implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column
@@ -51,7 +51,6 @@ public class PortalLinkEO implements Serializable {
     private List<UserEO> sharedUsers = new ArrayList<>();
 
     public PortalLinkEO() {
-        setId(UUID.randomUUID());
         setName("");
         setDescription("");
         setHref("");

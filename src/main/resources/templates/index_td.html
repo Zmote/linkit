@@ -8,7 +8,7 @@
     <h3 class="text-center">Keine Links gefunden!</h3>
     <p class="text-center">Auf dieser Seite sind noch keine Links verfügbar.</p>
 </div>
-<div th:replace="display_controls :: body"></div>
+<div th:replace="~{display_controls :: body}"></div>
 <th:block th:each="entry : ${portalLinks}">
     <div class="row border-bottom ml-1 mb-2">
         <ul class="nav nav-tabs">
@@ -19,10 +19,10 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4" th:each="portalLink : ${entry.value}">
-            <div th:replace="card :: body"></div>
+            <div th:replace="~{card :: body}"></div>
         </div>
     </div>
 </th:block>
-<div th:replace="add_btn :: body"></div>
+<div th:replace="~{add_btn :: body}"></div>
 </body>
 </html>

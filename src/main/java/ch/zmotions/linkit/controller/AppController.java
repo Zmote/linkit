@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -61,9 +61,9 @@ public class AppController extends AbstractPortalController {
     }
 
     @GetMapping("credentials/{id}")
-    public ResponseEntity showPassword(@PathVariable("id") UUID portalLinkId) {
+    public ResponseEntity<String> showPassword(@PathVariable("id") UUID portalLinkId) {
         Optional<PortalLinkDto> dto = portalLinkServiceFacade.findById(portalLinkId);
-        return dto.<ResponseEntity>map(portalLinkDto -> ResponseEntity.ok(authHelperFacade.decrypt(portalLinkDto.getPassword())))
+        return dto.map(portalLinkDto -> ResponseEntity.ok(authHelperFacade.decrypt(portalLinkDto.getPassword())))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 

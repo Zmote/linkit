@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -35,13 +35,13 @@ public class GlobalLinkController extends AbstractPortalLinksController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deletePortalLink(@PathVariable("id") UUID id) {
+    public ResponseEntity<String> deletePortalLink(@PathVariable("id") UUID id) {
         portalLinkServiceFacade.removeById(id);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("{id}")
-    public ResponseEntity updatePortalLink(@PathVariable("id") UUID id, @RequestBody PortalLinkDto portalLink) {
+    public ResponseEntity<String> updatePortalLink(@PathVariable("id") UUID id, @RequestBody PortalLinkDto portalLink) {
         portalLink.setId(id);
         Optional<PortalLinkDto> updatedPortalLink = portalLinkServiceFacade.update(portalLink);
         if (updatedPortalLink.isPresent()) {
@@ -51,7 +51,7 @@ public class GlobalLinkController extends AbstractPortalLinksController {
     }
 
     @PostMapping
-    public ResponseEntity newPortalLink(@RequestBody PortalLinkDto portalLink) {
+    public ResponseEntity<String> newPortalLink(@RequestBody PortalLinkDto portalLink) {
         Optional<PortalLinkDto> newPortalLink = portalLinkServiceFacade.create(portalLink);
         if (newPortalLink.isPresent()) {
             return ResponseEntity.ok().build();

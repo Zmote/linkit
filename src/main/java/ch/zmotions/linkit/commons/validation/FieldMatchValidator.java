@@ -3,8 +3,8 @@ package ch.zmotions.linkit.commons.validation;
 import ch.zmotions.linkit.commons.validation.annotation.FieldMatch;
 import org.apache.commons.beanutils.BeanUtils;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
 

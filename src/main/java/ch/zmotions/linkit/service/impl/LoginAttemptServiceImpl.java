@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,7 @@ public class LoginAttemptServiceImpl implements LoginAttemptService {
 
     private final int MAX_ATTEMPT = 12;
     private final int MAX_LOGIN_ATTEMPT_DEFAULT = 3;
-    private LoadingCache<String, Integer> attemptsCache;
+    private final LoadingCache<String, Integer> attemptsCache;
     private final Logger LOGGER = LoggerFactory.getLogger(LoginAttemptServiceImpl.class);
     private final UserRepository userRepository;
     private final PortalRepository portalRepository;
@@ -35,13 +34,12 @@ public class LoginAttemptServiceImpl implements LoginAttemptService {
         this.userRepository = userRepository;
         this.portalRepository = portalRepository;
         attemptsCache = CacheBuilder.newBuilder().
-                expireAfterWrite(1, TimeUnit.DAYS).build(new CacheLoader<String, Integer>() {
-            @Override
-            @ParametersAreNonnullByDefault
-            public Integer load(String key) {
-                return 0;
-            }
-        });
+                expireAfterWrite(1, TimeUnit.DAYS).build(new CacheLoader<>() {
+					@Override
+					public Integer load(String key) {
+						return 0;
+					}
+				});
     }
 
     @Override

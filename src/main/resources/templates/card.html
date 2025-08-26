@@ -10,7 +10,7 @@
    th:with="type=${ {'fa-terminal bg-dark', 'fa-desktop bg-info', 'fa-link bg-success'} }">
     <i th:class="'fas ' + ${type[__${portalLink.getType().ordinal()}__]} +
             ' floating-pin p-3 shadow-sm text-light'"></i>
-    <i th:if="${#request.requestURI != '/sharedwithme' && portalLink.getSharedUsers() != null &&
+    <i th:if="${requestURI != '/sharedwithme' && portalLink.getSharedUsers() != null &&
     !portalLink.getSharedUsers().isEmpty()}"
        class="fas fa-users floating-pin-left bg-primary p-3 shadow-sm text-light"></i>
     <div class="link-image">
@@ -21,17 +21,17 @@
         </div>
         <div class="overlay-ext">
             <div class="floating-pin-left z-index-2">
-                <button th:data-id="${portalLink.getId()}" th:unless="${#request.requestURI == '/sharedwithme'}"
+                <button th:data-id="${portalLink.getId()}" th:unless="${requestURI == '/sharedwithme'}"
                         class="btn btn-light shadow-sm js-frontEditPortalLink ml-2 mr-1 mt-2">
                     <i class="fas fa-edit"></i>
                 </button>
-                <button th:data-id="${portalLink.getId()}" th:unless="${#request.requestURI == '/sharedwithme'}"
+                <button th:data-id="${portalLink.getId()}" th:unless="${requestURI == '/sharedwithme'}"
                         class="btn btn-danger shadow-sm js-frontDeletePortalLink mr-1 mt-2">
                     <i class="fas fa-trash"></i>
                 </button>
                 <button th:if="${portalLink.getLogin() != null || portalLink.getPassword() != null}"
                         th:data-id="${portalLink.getId()}"
-                        th:classappend="${#request.requestURI == '/sharedwithme'}?'ml-2':''"
+                        th:classappend="${requestURI == '/sharedwithme'}?'ml-2':''"
                         class="btn btn-warning shadow-sm js-frontShowPassword mt-2">
                     <i class="fas fa-key"></i>
                 </button>

@@ -8,6 +8,7 @@ import ch.zmotions.linkit.controller.ConfigurationController;
 import ch.zmotions.linkit.controller.error.MyCustomErrorController;
 import ch.zmotions.linkit.facade.AuthHelperFacade;
 import ch.zmotions.linkit.facade.PortalServiceFacade;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -48,5 +49,15 @@ public class GlobalAttributesAdvice {
         } catch (AccessDeniedException ex) {
             return new PortalDto();
         }
+    }
+
+    @ModelAttribute("requestURI")
+    public String requestURI(final HttpServletRequest request) {
+        return request.getRequestURI();
+    }
+
+    @ModelAttribute("serverName")
+    public String serverName(final HttpServletRequest request) {
+        return request.getServerName();
     }
 }

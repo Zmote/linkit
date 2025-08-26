@@ -1,6 +1,6 @@
 package ch.zmotions.linkit.commons.dto;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Pattern;
 
 public class ChangePasswordUserDto {
     private String oldpassword;

@@ -21,12 +21,12 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequestMapping("/files")
 public class FileController {
 
-    private StorageService storageService;
-    private PortalLinkService portalLinkService;
+    private final StorageService storageService;
+    private final PortalLinkService portalLinkService;
 
     public FileController(StorageService storageService, PortalLinkService portalLinkService) {
         this.storageService = storageService;
@@ -34,7 +34,6 @@ public class FileController {
     }
 
     @GetMapping("/download/{id}.rdp")
-    @ResponseBody
     public ResponseEntity<Resource> downloadRdpProfile(@PathVariable("id") UUID portalLinkId) {
         Optional<PortalLinkEO> portalLink = portalLinkService.findById(portalLinkId);
         if (portalLink.isPresent()) {
@@ -51,7 +50,6 @@ public class FileController {
     }
 
     @PostMapping(value = "/upload-file")
-    @ResponseBody
     public FileResponseDto uploadFile(@RequestParam("file") MultipartFile file) {
         String name = storageService.store(file);
         String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -63,7 +61,6 @@ public class FileController {
     }
 
     @PostMapping("/upload-multiple-files")
-    @ResponseBody
     public List<FileResponseDto> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.stream(files)
                 .map(this::uploadFile)
@@ -71,7 +68,7 @@ public class FileController {
     }
 
     @DeleteMapping("/delete-file")
-    public ResponseEntity deleteFile(@RequestParam("file") String fileName) {
+    public ResponseEntity<String> deleteFile(@RequestParam("file") String fileName) {
         try {
             storageService.delete(fileName);
             return ResponseEntity.status(HttpStatus.OK)

@@ -21,6 +21,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -56,21 +58,30 @@ public class DbInitializer implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) {
+        initDefaults();
+        populateWithDummyData();
+    }
+
+    protected void initDefaults(){
         createDefaultRolesIfNotExists();
         createDefaultAdminUserIfNotExists();
         createDefaultPortalIfNotExists();
-        DatabaseProperties appDb = this.appProperties.getDb();
-        PopulateProperties populate = appDb.getPopulate();
-        if(appDb.getInitialize()){
-            populateWithDummyData(populate);
-        }
         System.out.println(" -- Database defaults have been initialized");
     }
 
-    private void populateWithDummyData(PopulateProperties populate) {
-        System.out.println(" -- Populate with dummy data");
+    private void populateWithDummyData(){
+        DatabaseProperties appDb = this.appProperties.getDb();
+        PopulateProperties populate = appDb.getPopulate();
+        if(populate.isEnabled()){
+            doPopulateWithDummyData(populate);
+        }
+    }
+
+    private void doPopulateWithDummyData(PopulateProperties populate) {
+        System.out.println(" -- Populating with dummy data...");
         LinkProperties links = populate.getLinks();
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        List<PortalLinkEO> portalLinks = new ArrayList<>();
         for(int i = 0; i < links.getCount(); i++) {
             PortalLinkEO portalLinkEO = new PortalLinkEO();
             char prefix = alphabet.charAt(i % (alphabet.length()));
@@ -84,19 +95,21 @@ public class DbInitializer implements CommandLineRunner {
                 portalLinkEO.setLogin(prefix + "dmin");
                 portalLinkEO.setPassword(aesEncryptorDecryptor.encrypt(prefix + "dmin"));
             }
-            portalLinkRepository.save(portalLinkEO);
+            portalLinks.add(portalLinkEO);
         }
+        portalLinkRepository.saveAll(portalLinks);
+        System.out.println(" -- ...finished populating with dummy data");
     }
 
     private void createDefaultRolesIfNotExists() {
         Optional<RoleEO> roleUserOptional = roleRepository.findByNameIs("ROLE_USER");
-        if (!roleUserOptional.isPresent()) {
+        if (roleUserOptional.isEmpty()) {
             RoleEO roleUser = new RoleEO();
             roleUser.setName("ROLE_USER");
             roleRepository.save(roleUser);
         }
         Optional<RoleEO> roleAdminOptional = roleRepository.findByNameIs("ROLE_ADMIN");
-        if (!roleAdminOptional.isPresent()) {
+        if (roleAdminOptional.isEmpty()) {
             RoleEO roleAdmin = new RoleEO();
             roleAdmin.setName("ROLE_ADMIN");
             roleRepository.save(roleAdmin);

@@ -11,9 +11,4 @@ public class MyCustomErrorController implements ErrorController {
     public String handleError() {
         return "error";
     }
-
-    @Override
-    public String getErrorPath() {
-        return "/error";
-    }
 }

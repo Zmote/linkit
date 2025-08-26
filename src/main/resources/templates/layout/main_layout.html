@@ -7,19 +7,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>LinkIt Portal</title>
-        <link th:replace="layout/links"/>
-        <div th:replace="layout/scripts"></div>
+        <link th:replace="~{layout/links}"/>
+        <th:block th:replace="~{layout/scripts}"/>
     </head>
     <body>
-        <div th:replace="layout/header :: header"></div>
+        <div th:replace="~{layout/header :: header}"></div>
         <div id="mainContent" class="container-fluid w-80 content-top-fix mb-5">
             <div layout:fragment="content"></div>
         </div>
-        <div th:replace="layout/footer :: footer"></div>
+        <div th:replace="~{layout/footer :: footer}"></div>
         <div class="js-frontModalWrapper"></div>
         <!-- Dev dependencies for hot reload of Thymeleaf frontend -->
         <script
-                th:with="host=${#request.getServerName()},port=${@environment.getProperty('spring.devtools.livereload.port')}"
+                th:with="host=${serverName},port=${@environment.getProperty('spring.devtools.livereload.port')}"
                 th:src="@{js/livereload.js(host=${host},port=${port == null}? 35729 : ${port})}"
                 th:if="${@environment.getProperty('spring.devtools.livereload.enabled')}"></script>
     </body>

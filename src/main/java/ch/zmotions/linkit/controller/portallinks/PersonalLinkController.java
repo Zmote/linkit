@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -42,7 +42,7 @@ public class PersonalLinkController extends AbstractPortalLinksController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deletePortalLink(@PathVariable("id") UUID id) {
+    public ResponseEntity<String> deletePortalLink(@PathVariable("id") UUID id) {
         Optional<UserDto> loginUserOptional = authHelperFacade.getLoginUser();
         if (loginUserOptional.isPresent()) {
             UserDto userDto = loginUserOptional.get();
@@ -61,7 +61,7 @@ public class PersonalLinkController extends AbstractPortalLinksController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity updatePortalLink(@PathVariable("id") UUID id, @RequestBody PortalLinkDto portalLink) {
+    public ResponseEntity<String> updatePortalLink(@PathVariable("id") UUID id, @RequestBody PortalLinkDto portalLink) {
         Optional<UserDto> optionalLoginUser = authHelperFacade.getLoginUser();
         if (optionalLoginUser.isPresent()) {
             Optional<PortalLinkDto> portalLinkOptional = portalLinkServiceFacade.findById(id);
@@ -84,7 +84,7 @@ public class PersonalLinkController extends AbstractPortalLinksController {
     }
 
     @PostMapping
-    public ResponseEntity newPortalLink(@RequestBody PortalLinkDto portalLink) {
+    public ResponseEntity<String> newPortalLink(@RequestBody PortalLinkDto portalLink) {
         Optional<UserDto> optionalLoginUser = authHelperFacade.getLoginUser();
         if (optionalLoginUser.isPresent()) {
             portalLink.setOwner(optionalLoginUser.get());

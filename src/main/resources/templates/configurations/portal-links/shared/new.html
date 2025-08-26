@@ -15,7 +15,7 @@
             </div>
             <div class="modal-body">
                 <form class="js-form" th:object="${portalLink}">
-                    <div th:replace="configurations/portal-links/shared/form :: form-body"></div>
+                    <div th:replace="~{configurations/portal-links/shared/form :: form-body}"></div>
                 </form>
             </div>
             <div class="modal-footer">

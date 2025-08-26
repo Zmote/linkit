@@ -3,7 +3,7 @@ package ch.zmotions.linkit.controller.base;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

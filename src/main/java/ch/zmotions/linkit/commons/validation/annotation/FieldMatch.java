@@ -2,8 +2,8 @@ package ch.zmotions.linkit.commons.validation.annotation;
 
 import ch.zmotions.linkit.commons.validation.FieldMatchValidator;
 
-import javax.validation.Payload;
-import javax.validation.Constraint;
+import jakarta.validation.Payload;
+import jakarta.validation.Constraint;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
